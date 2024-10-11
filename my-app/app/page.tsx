@@ -1,101 +1,109 @@
-import Image from "next/image";
+// import Image from "next/image";
+// import drugfree from "@/app/assets/drugfree.jpg";
+// import llama from "@/app/assets/llama.jpg";
+
+
+// export default function Home(){
+//   return(
+//     <div className = "bg-[url('/llama.jpg')] h-screen flex justify-center">
+//       <div className = "flex flex-col justify-center h-dvh">
+//           <p className = "font-bold text-5xl text-center">Dont do drugs </p>
+//           <p className = "text-sm text-center"> drugs are bad!</p>
+//           <Image src={drugfree} alt="0.5" width={500}/>
+//       </div>
+//     </div>
+//   );
+// } 
+
+/*import { FlipWords } from "@/components/ui/flip-words";
 
 export default function Home() {
+  const words: string[] = ["skibidi", "litty", "sigma"];
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+	<div>
+  	<div className="flex flex-col h-[calc(100vh-60px)] items-center justify-center">
+    	<h1 className="font-bold text-5xl">Taking drugs is not
+            <FlipWords words = {words}/>
+      </h1>
+  	</div>
+	</div>
+  )
+} */
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { useUser } from "@clerk/nextjs"; // Clerk for user authentication
+
+// Import images for the llama's different moods using relative paths
+import drugfree from "@/app/assets/drugfree.jpg";
+import llamaHappy from "@/app/assets/smile-llama.jpg";  // Make sure the name is exactly as in your folder
+import llamaDead from "@/app/assets/dead-llama.jpg";     // Same for this one
+import llamaSunglass from "@/app/assets/sunglass-llama.jpg";  
+
+export default function Home() {
+  const [mood, setMood] = useState("happy");  // Llama's mood state
+
+  // Event handlers to change llama's mood
+  const handleTryDrugs = () => {
+    setMood("sad");
+  };
+
+  const handleStopDrugs = () => {
+    setMood("happyAgain");
+  };
+
+  return (
+    <div className="bg-gray-100 h-screen flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center p-4 bg-white shadow-lg rounded-lg">
+        
+        
+        {/* Show Llama based on its mood */}
+        <div className="mb-8">
+          {mood === "happy" && (
+            <>
+              <Image src={llamaHappy} alt="Happy Llama" width={500} height={500} />
+              <p className="text-xl text-center">I'm a happy llama!</p>
+            </>
+          )}
+          {mood === "sad" && (
+            <>
+              <Image src={llamaDead} alt="Sad Llama" width={500} height={500} />
+              <p className="text-xl text-center">Oh shit, im dying because of drugs...</p>
+            </>
+          )}
+          {mood === "happyAgain" && (
+            <>
+              <Image src={llamaSunglass} alt="Happy Again Llama" width={500} height={500} />
+              <p className="text-xl text-center">Yay! Im much COOLER after quitting drugs!</p>
+            </>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <div className="flex space-x-4">
+          {mood === "happy" && (
+            <button
+              onClick={handleTryDrugs}
+              className="bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Try Drugs (Don't do it!)
+            </button>
+          )}
+          {mood === "sad" && (
+            <button
+              onClick={handleStopDrugs}
+              className="bg-green-500 text-white px-4 py-2 rounded"
+            >
+              Stop Drugs and Be Happy Again
+            </button>
+          )}
+        </div>
+      </div>
+
+     
     </div>
   );
 }
+
