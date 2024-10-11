@@ -1,1 +1,5 @@
-{"node":{"d88c134ab11fca2ce43034f1c1cf8ed8be54a619":{"workers":{"app/_not-found/page":"536","app/page":"536","app/about-me/page":"536","app/quiz/page":"536"},"layer":{"app/_not-found/page":"action-browser","app/page":"action-browser","app/about-me/page":"action-browser","app/quiz/page":"action-browser"}}},"edge":{},"encryptionKey":"63Wm12GGEGwIBqRgX4o6Y0FxRpwuX1qV4q9PpyyfSPE="}
+{
+  "node": {},
+  "edge": {},
+  "encryptionKey": "hIn4WcrjUHRazTPhZmhX8PsxxQY5gwoSjoZtGEX+0u8="
+}
